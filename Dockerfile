@@ -6,9 +6,8 @@ ADD yum.repos.d etc/
 
 RUN yum update -y && \
     yum install -y epel-release && \
-    yum install -y iproute python-setuptools \
-                  hostname inotify-tools yum-utils which \
-                  wget patch tar bzip2 unzip jq && \
+    yum install -y iproute python-setuptools wget \
+                  hostname inotify-tools yum-utils which && \
     yum clean all && \
     rm -rf /tmp/yum* && \
     easy_install supervisor
