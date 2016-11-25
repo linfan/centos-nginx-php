@@ -21,33 +21,14 @@ RUN yum install -y nginx && \
 RUN rpm -Uvh http://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
     yum install -y \
       php70-php \
-      php70-php-bcmath \
       php70-php-cli \
       php70-php-common \
       php70-php-devel \
-      php70-php-fpm \
-      php70-php-gd \
-      php70-php-gmp \
-      php70-php-intl \
-      php70-php-json \
-      php70-php-mbstring \
-      php70-php-mcrypt \
-      php70-php-mysqlnd \
-      php70-php-opcache \
-      php70-php-pdo \
-      php70-php-pear \
-      php70-php-process \
-      php70-php-pspell \
-      php70-php-xml \
-      php70-php-pecl-imagick \
-      php70-php-pecl-mysql \
-      php70-php-pecl-uploadprogress \
-      php70-php-pecl-uuid \
-      php70-php-pecl-zip && \
+      php70-php-fpm && \
     yum clean all && \
     rm -rf /tmp/yum* && \
     ln -sf /opt/remi/php70/enable /etc/profile.d/php70-paths.sh && \
-    ln -sf /opt/remi/php70/root/usr/bin/{pear,pecl,phar,php,php-cgi,php-config,phpize} /usr/local/bin/. && \
+    ln -sf /opt/remi/php70/root/usr/bin/* /usr/local/bin/. && \
     ln -sf /etc/opt/remi/php70/php.ini /etc/php.ini && \
     ln -sf /etc/opt/remi/php70/php.d /etc/php.d && \
     rm -rf /etc/php.d && \
