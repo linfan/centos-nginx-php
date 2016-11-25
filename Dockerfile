@@ -47,14 +47,12 @@ RUN rpm -Uvh http://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
       php70-php-pecl-zip && \
     yum clean all && \
     rm -rf /tmp/yum* && \
-    ln -sfF /opt/remi/php70/enable /etc/profile.d/php70-paths.sh && \
-    ln -sfF /opt/remi/php70/root/usr/bin/{pear,pecl,phar,php,php-cgi,php-config,phpize} /usr /local/bin/. && \
-    php --version && \
-    mv -f /etc/opt/remi/php70/php.ini /etc/php.ini && \
-    ln -s /etc/php.ini /etc/opt/remi/php70/php.ini && \
+    ln -sf /opt/remi/php70/enable /etc/profile.d/php70-paths.sh && \
+    ln -sf /opt/remi/php70/root/usr/bin/{pear,pecl,phar,php,php-cgi,php-config,phpize} /usr/local/bin/. && \
+    ln -sf /etc/opt/remi/php70/php.ini /etc/php.ini && \
+    ln -sf /etc/opt/remi/php70/php.d /etc/php.d && \
     rm -rf /etc/php.d && \
-    mv /etc/opt/remi/php70/php.d /etc/. && \
-    ln -s /etc/php.d /etc/opt/remi/php70/php.d && \
+    php --version && \
     echo 'PHP 7 installed.'
 
 ADD fs /
