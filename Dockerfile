@@ -2,7 +2,7 @@ FROM centos:centos7
 
 ARG WEBROOT=/app/www
 
-ADD fs/
+ADD yum.repos.d etc/
 
 RUN yum update -y && \
     yum install -y epel-release && \
