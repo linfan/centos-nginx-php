@@ -1,20 +1,21 @@
 FROM centos:centos7
 
-ADD fs /
-
 ARG WEBROOT=/app/www
+
+ADD fs/
 
 RUN yum update -y && \
     yum install -y epel-release && \
     yum install -y iproute python-setuptools \
                   hostname inotify-tools yum-utils which \
                   wget patch tar bzip2 unzip jq && \
-    yum clean all && rm -rf /tmp/yum* \
+    yum clean all && \
+    rm -rf /tmp/yum* && \
     easy_install supervisor
 
 RUN yum install -y nginx && \
-    yum clean all && rm -rf /tmp/yum* \
-    rm -rf /etc/nginx/*.d /etc/nginx/*_params && \
+    yum clean all && \
+    rm -rf /tmp/yum* /etc/nginx/*.d /etc/nginx/*_params && \
     mkdir -p $WEBROOT && \
     chown -R nginx:nginx $WEBROOT
 
@@ -44,13 +45,19 @@ RUN rpm -Uvh http://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
       php70-php-pecl-uploadprogress \
       php70-php-pecl-uuid \
       php70-php-pecl-zip && \
-    yum clean all && rm -rf /tmp/yum* \
+    yum clean all && \
+    rm -rf /tmp/yum* && \
     ln -sfF /opt/remi/php70/enable /etc/profile.d/php70-paths.sh && \
     ln -sfF /opt/remi/php70/root/usr/bin/{pear,pecl,phar,php,php-cgi,php-config,phpize} /usr /local/bin/. && \
     php --version && \
-    mv -f /etc/opt/remi/php70/php.ini /etc/php.ini && ln -s /etc/php.ini /etc/opt/remi/php70/php.ini && \
-    rm -rf /etc/php.d && mv /etc/opt/remi/php70/php.d /etc/. && ln -s /etc/php.d /etc/opt/remi/php70/php.d && \
+    mv -f /etc/opt/remi/php70/php.ini /etc/php.ini && \
+    ln -s /etc/php.ini /etc/opt/remi/php70/php.ini && \
+    rm -rf /etc/php.d && \
+    mv /etc/opt/remi/php70/php.d /etc/. && \
+    ln -s /etc/php.d /etc/opt/remi/php70/php.d && \
     echo 'PHP 7 installed.'
+
+ADD fs /
 
 EXPOSE 80 443
 
