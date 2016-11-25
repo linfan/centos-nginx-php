@@ -39,4 +39,4 @@ ADD fs /
 
 EXPOSE 80 443
 
-ENTRYPOINT ["/app/bootstrap.sh"]
+ENTRYPOINT ["supervisord", "-n", "-c", "/etc/supervisord.conf"]
